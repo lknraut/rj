@@ -529,41 +529,7 @@
             document.getElementById('responseContainer').classList.add('active');
         }
 
-        async function copyScript() {
-            const button = document.querySelector('.copy-button');
-            const originalText = button.innerHTML;
-            
-            try {
-                // Get the raw text stored when displaying
-                let textToCopy = window.currentScriptText || '';
-                
-                // If it's a JSON array, parse and join
-                try {
-                    const parsed = JSON.parse(textToCopy);
-                    if (Array.isArray(parsed)) {
-                        textToCopy = parsed.join('\n\n');
-                    }
-                } catch (e) {
-                    // Not JSON, use as is
-                }
-                
-                await navigator.clipboard.writeText(textToCopy);
-                
-                // Show success feedback
-                button.innerHTML = '✅ Copied!';
-                button.classList.add('copied');
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.classList.remove('copied');
-                }, 2000);
-            } catch (err) {
-                button.innerHTML = '❌ Failed';
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                }, 2000);
-            }
-        }
+      
 
         function parseScript(text) {
             let html = '';
